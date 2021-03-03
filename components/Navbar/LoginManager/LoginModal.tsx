@@ -7,13 +7,16 @@ import {
 	ModalBody,
 	ModalCloseButton,
 	ModalContent,
+	ModalFooter,
 	ModalHeader,
 	ModalOverlay,
 	useDisclosure,
 	useToast,
 } from '@chakra-ui/react';
-import React from 'react';
-import { auth, googleAuthProvider } from '../../../utils/firebase';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../../utils/context';
+import { auth, firestore, googleAuthProvider } from '../../../utils/firebase';
+import { toast } from '../../../utils/toast';
 
 interface ModalProps {
 	isOpen: boolean;
@@ -22,25 +25,32 @@ interface ModalProps {
 
 const LoginModal = ({ isOpen, onClose }: ModalProps) => {
 	const toast = useToast();
+	const user = useContext(UserContext);
 
 	const signInWithGoogle = async () => {
 		try {
 			await auth.signInWithPopup(googleAuthProvider);
-			toast({
-				title: 'log in successful',
-				status: 'success',
-				duration: 1000,
-				isClosable: true,
+			const userDoc = firestore.doc(`users/${user.uid}`);
+			const batch = firestore.batch();
+
+			batch.set(userDoc, {
+				uid: user.uid,
+				username: user.displayName,
+				photoURL: user.photoURL,
+				email: user.email,
+				admin: false,
 			});
+
+			await batch.commit();
+			toast('loginSuccessful');
 			onClose();
 		} catch (e) {
-			toast({
-				title: 'Something Went Wrong.',
-				description: 'Failed to log in with google.',
-				status: 'error',
-				duration: 1000,
-				isClosable: true,
-			});
+			toast('loginFailure');
+		}
+	};
+
+	const login = async () => {
+		if (user) {
 		}
 	};
 
@@ -63,6 +73,7 @@ const LoginModal = ({ isOpen, onClose }: ModalProps) => {
 							Sign in With Google
 						</Button>
 					</ModalBody>
+					<ModalFooter></ModalFooter>
 				</ModalContent>
 			</Modal>
 		</>

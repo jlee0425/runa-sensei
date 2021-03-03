@@ -1,12 +1,18 @@
-import { useToast } from '@chakra-ui/react';
+import { useToast, UseToastOptions } from '@chakra-ui/react';
 
-const toasts = {
-	loginSuccess: { title: 'Log in successful', status: 'success' },
-	loginFailure: { title: 'Log in failed', status: 'error' },
-	logout: { title: 'You are logged out', status: 'success' },
-};
+export enum toastTypes {
+	loginSuccess,
+	loginFailure,
+	logout,
+}
 
-export const toast = (type: string) => {
+const toasts: UseToastOptions[] = [
+	{ title: 'Log in successful', status: 'success' },
+	{ title: 'Log in failed', status: 'error' },
+	{ title: 'You are logged out', status: 'success' },
+];
+
+export const toast = (type: toastTypes) => {
 	const toast = useToast();
-	toast({ ...toasts[type], duration: 1000, isClosable: true });
+	toast({ ...toasts[toastTypes[type]], duration: 1000, isClosable: true });
 };

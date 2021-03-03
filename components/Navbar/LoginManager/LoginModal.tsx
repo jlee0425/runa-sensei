@@ -16,7 +16,7 @@ import {
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../../utils/context';
 import { auth, firestore, googleAuthProvider } from '../../../utils/firebase';
-import { toast } from '../../../utils/toast';
+import { toast, toastTypes } from '../../../utils/toast';
 
 interface ModalProps {
 	isOpen: boolean;
@@ -42,10 +42,20 @@ const LoginModal = ({ isOpen, onClose }: ModalProps) => {
 			});
 
 			await batch.commit();
-			toast('loginSuccessful');
+			toast({
+				title: 'Log in successful',
+				status: 'success',
+				duration: 1000,
+				isClosable: true,
+			});
 			onClose();
 		} catch (e) {
-			toast('loginFailure');
+			toast({
+				title: 'Log in failed',
+				status: 'error',
+				duration: 1000,
+				isClosable: true,
+			});
 		}
 	};
 

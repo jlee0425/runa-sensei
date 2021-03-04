@@ -1,6 +1,5 @@
-import { Box, Button, Stack, useDisclosure } from '@chakra-ui/react';
-import React, { useContext } from 'react';
-import { UserContext } from '../../../utils/context';
+import { Box, Stack } from '@chakra-ui/react';
+import React from 'react';
 import LoginManager from '../LoginManager';
 import MenuItem from './MenuItem';
 

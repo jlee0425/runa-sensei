@@ -1,19 +1,16 @@
-import { useDisclosure, Button, Image } from '@chakra-ui/react';
+import { Button, useDisclosure } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import { UserContext } from '../../../utils/context';
 import LoginModal from './LoginModal';
-import SignoutBtn from './SignoutBtn';
+import UserPopover from './UserPopover';
 
-interface Props {}
-
-const LoginManager = (props: Props) => {
+const LoginManager = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const { username, photoURL } = useContext(UserContext);
+	const user = useContext(UserContext);
 
-	return username ? (
+	return user.uid ? (
 		<>
-			<Image src={photoURL.toString()} boxSize='20px' />
-			<SignoutBtn />
+			<UserPopover />
 		</>
 	) : (
 		<>

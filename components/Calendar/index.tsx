@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../utils/context';
 
 interface Props {}
 

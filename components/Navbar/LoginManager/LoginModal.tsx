@@ -42,11 +42,7 @@ const LoginModal = ({ isOpen, onClose }: ModalProps) => {
 		try {
 			const userDoc = firestore.doc(`users/${user.uid}`);
 			if (user.uid && !(await userDoc.get()).exists) {
-				const batch = firestore.batch();
-
-				batch.set(userDoc, user);
-
-				await batch.commit();
+				await userDoc.set(user);
 			}
 		} catch (e) {
 			toast({

@@ -2,7 +2,6 @@ import { Button, useToast } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { auth } from '../../../utils/firebase';
-import { toast, toastTypes } from '../../../utils/toast';
 
 const SignoutBtn = () => {
 	const router = useRouter();

@@ -1,10 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import React, { useContext } from 'react';
-import { UserContext } from '../../utils/context';
 
-interface Props {}
-
-const Calendar = (props: Props) => {
+const Calendar = () => {
 	return (
 		<Flex justify='center'>
 			<iframe

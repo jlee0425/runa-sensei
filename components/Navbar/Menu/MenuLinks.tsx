@@ -1,13 +1,16 @@
-import { Box, Stack } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Image, Stack } from '@chakra-ui/react';
+import Link from 'next/link';
+import React, { useContext } from 'react';
+import { UserContext } from '../../../utils/context';
 import LoginManager from '../LoginManager';
-import MenuItem from './MenuItem';
+import SignoutBtn from '../LoginManager/SignoutBtn';
 
 interface MenuLinksProps {
 	menuOpen: boolean;
 }
 
 const MenuLinks = ({ menuOpen }: MenuLinksProps) => {
+	const user = useContext(UserContext);
 	return (
 		<Box
 			display={{ base: menuOpen ? 'block' : 'none', md: 'block' }}
@@ -20,9 +23,16 @@ const MenuLinks = ({ menuOpen }: MenuLinksProps) => {
 				direction={['column', 'row', 'row', 'row']}
 				pt={[4, 4, 0, 0]}
 			>
-				<MenuItem to='/'>Home</MenuItem>
-				<MenuItem to='user'>My Page</MenuItem>
-				<LoginManager />
+				{user ? (
+					<>
+						<Link href={`/${user.username}`}>
+							<Image src={user.photoURL} boxSize='35px' borderRadius='full' />
+						</Link>
+						<SignoutBtn />
+					</>
+				) : (
+					<LoginManager />
+				)}
 			</Stack>
 		</Box>
 	);

@@ -7,11 +7,14 @@ export const dataToUser = (user) => ({
 	username: user.displayName,
 	email: user.email,
 	photoURL: user.photoURL,
+	createdAt: user.metadata.creationTime,
+	lastSignedIn: user.metadata.lastSignInTime,
 	admin: false,
 });
 
 export const useUserData = () => {
 	const [user] = useAuthState(auth);
+	console.log(user);
 
 	useEffect(() => {
 		// turn off realtime subscription
@@ -26,13 +29,5 @@ export const useUserData = () => {
 		return unsubscribe;
 	}, [user]);
 
-	return user
-		? dataToUser(user)
-		: {
-				uid: null,
-				username: null,
-				email: null,
-				photoURL: null,
-				admin: false,
-		  };
+	return user ? dataToUser(user) : null;
 };

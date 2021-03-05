@@ -7,9 +7,8 @@ import Navbar from '../components/Navbar';
 import { UserContext } from '../utils/context';
 import { useUserData } from '../utils/useUserData';
 
-const CLIENT_ID =
-	'938672571350-qiaef08rs3aovafrkg388vd1l06gqnfu.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyD1miRJK_DESGZ5w2HuJBDd_6MdTpeWjBE';
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const API_KEY = process.env.GOOGLE_API_KEY;
 const DISCOVERY_DOCS = [
 	'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
 ];

@@ -10,9 +10,10 @@ import {
 	ModalOverlay,
 	useToast,
 } from '@chakra-ui/react';
+import firebase from 'firebase';
 import React from 'react';
-import { auth, firestore, googleAuthProvider } from '../../../utils/firebase';
-import { dataToUser } from '../../../utils/useUserData';
+import { auth, firestore, googleAuthProvider } from '../../../lib/firebase';
+import { dataToUser } from '../../../lib/useUserData';
 
 interface ModalProps {
 	isOpen: boolean;
@@ -21,10 +22,15 @@ interface ModalProps {
 
 const LoginModal = ({ isOpen, onClose }: ModalProps) => {
 	const toast = useToast();
+
 	const signInWithGoogle = async () => {
 		try {
 			const res = await auth.signInWithPopup(googleAuthProvider);
-			await signUp(dataToUser(res.user));
+			const credential: firebase.auth.OAuthCredential = res.credential;
+			const token = credential.accessToken;
+			console.log('credential', credential);
+			const user = res.user;
+			await signUp(dataToUser(user));
 
 			toast({
 				title: 'Log in successful',

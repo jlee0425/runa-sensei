@@ -1,6 +1,6 @@
 import { Center, Image, Container, Heading, Text } from '@chakra-ui/react';
 import React, { useContext } from 'react';
-import { UserContext } from '../../utils/context';
+import { UserContext } from '../../lib/context';
 
 const index = () => {
 	const { username, email, photoURL, createdAt, lastSignedIn } = useContext(

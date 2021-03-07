@@ -1,7 +1,7 @@
 import { Box, Image, Stack } from '@chakra-ui/react';
 import Link from 'next/link';
 import React, { useContext } from 'react';
-import { UserContext } from '../../../utils/context';
+import { UserContext } from '../../../lib/context';
 import LoginManager from '../LoginManager';
 import SignoutBtn from '../LoginManager/SignoutBtn';
 

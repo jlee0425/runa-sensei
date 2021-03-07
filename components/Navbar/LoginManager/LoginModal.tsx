@@ -26,9 +26,6 @@ const LoginModal = ({ isOpen, onClose }: ModalProps) => {
 	const signInWithGoogle = async () => {
 		try {
 			const res = await auth.signInWithPopup(googleAuthProvider);
-			const credential: firebase.auth.OAuthCredential = res.credential;
-			const token = credential.accessToken;
-			console.log('credential', credential);
 			const user = res.user;
 			await signUp(dataToUser(user));
 

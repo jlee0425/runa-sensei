@@ -5,12 +5,7 @@ import Calendar from '../components/Calendar';
 interface Props {}
 
 const Home = (props: Props) => {
-	return (
-		<>
-			<Text fontSize='xl'>!!Home Page!!</Text>
-			<Calendar />
-		</>
-	);
+	return <Calendar />;
 };
 
 export default Home;

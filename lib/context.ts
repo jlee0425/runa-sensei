@@ -1,6 +1,6 @@
-import { createContext } from 'react';
+import { createContext, Dispatch, SetStateAction } from 'react';
 
-export interface User {
+export interface UserInfo {
 	uid: string;
 	username: string;
 	email: string;
@@ -10,4 +10,14 @@ export interface User {
 	admin: boolean;
 }
 
-export const UserContext = createContext<User>(null);
+export interface CalendarInfo {
+	timeZone: string;
+	currentTime: Date;
+	viewType: string;
+	setTimeZone: Dispatch<SetStateAction<string>>;
+	setCurrentTime: Dispatch<SetStateAction<Date>>;
+	setViewType: Dispatch<SetStateAction<string>>;
+}
+
+export const UserContext = createContext<Partial<UserInfo>>({});
+export const CalendarContext = createContext<Partial<CalendarInfo>>({});

@@ -1,5 +1,6 @@
 import { Box, Heading } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import ViewType from './ViewType';
 
 interface Props {}
 

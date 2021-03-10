@@ -1,7 +1,7 @@
 import { Box, HStack, useRadio, useRadioGroup } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import { CalendarContext } from '../../lib/context';
-import CalendarContainer from './CalendarContainer';
+import CalendarContainer from './CalendarCells';
 
 const RadioCard = (props) => {
 	const { getInputProps, getCheckboxProps } = useRadio(props);

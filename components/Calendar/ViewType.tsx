@@ -1,7 +1,6 @@
 import { Box, HStack, useRadio, useRadioGroup } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import { CalendarContext } from '../../lib/context';
-import CalendarContainer from './CalendarCells';
 
 const RadioCard = (props) => {
 	const { getInputProps, getCheckboxProps } = useRadio(props);
@@ -34,7 +33,7 @@ const RadioCard = (props) => {
 	);
 };
 
-const ViewType = () => {
+export const ViewType = () => {
 	const { setViewType } = useContext(CalendarContext);
 	const viewOptions = ['Weekly', 'Monthly'];
 	const { getRootProps, getRadioProps } = useRadioGroup({
@@ -57,5 +56,3 @@ const ViewType = () => {
 		</HStack>
 	);
 };
-
-export default ViewType;

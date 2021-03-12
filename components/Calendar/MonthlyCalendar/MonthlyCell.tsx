@@ -5,12 +5,10 @@ interface CellProps {
 	date: Date;
 }
 
-const MonthlyCell = ({ date }: CellProps) => {
+export const MonthlyCell = ({ date }: CellProps) => {
 	return (
-		<Box key={date.getTime()}>
-			<Text fontSize='lg'>{date.getDate()}</Text>
+		<Box key={date.getTime()} borderWidth={1} p='0 5px'>
+			<Text align='right'>{date.getDate()}</Text>
 		</Box>
 	);
 };
-
-export default MonthlyCell;

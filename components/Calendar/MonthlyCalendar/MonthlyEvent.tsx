@@ -10,7 +10,7 @@ interface MonthlyEventProps {
 	id: string;
 }
 
-const MonthylEvent = ({
+export const MonthlyEvent = ({
 	summary,
 	start,
 	end,
@@ -33,5 +33,3 @@ const MonthylEvent = ({
 		</Box>
 	);
 };
-
-export default MonthylEvent;

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Text } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { subMonths, addMonths, format, addWeeks, subWeeks } from 'date-fns';
-import { CalendarContext } from '../../lib/context';
+import { CalendarContext } from '../../../lib/context';
 
 export const CalendarController = () => {
 	const { currentTime, setCurrentTime, viewType } = useContext(CalendarContext);

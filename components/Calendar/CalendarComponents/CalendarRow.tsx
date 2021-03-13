@@ -1,5 +1,5 @@
 import React from 'react';
-import { MonthlyCell } from './MonthlyCell';
+import { MonthlyCell } from '../MonthlyCalendar/MonthlyCell';
 
 interface Props {
 	dates: Date[];

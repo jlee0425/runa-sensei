@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { CalendarContext } from '../../lib/context';
-import MonthlyCalendar from './MonthlyCalendar';
-import WeeklyCalendar from './WeeklyCalendar';
+import { CalendarContext } from '../../../lib/context';
+import MonthlyCalendar from '../MonthlyCalendar';
+import WeeklyCalendar from '../WeeklyCalendar';
 
 export const CalendarContainer = () => {
 	const { viewType } = useContext(CalendarContext);

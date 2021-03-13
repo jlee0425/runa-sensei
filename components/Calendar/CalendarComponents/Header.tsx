@@ -1,7 +1,7 @@
 import { Center, Container, HStack, Text } from '@chakra-ui/react';
 import { addDays, format, startOfWeek } from 'date-fns';
 import React, { useContext } from 'react';
-import { CalendarContext } from '../../lib/context';
+import { CalendarContext } from '../../../lib/context';
 import { CalendarController } from './CalendarController';
 
 export const CalendarHeader = () => {

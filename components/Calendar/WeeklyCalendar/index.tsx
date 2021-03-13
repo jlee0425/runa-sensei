@@ -1,9 +1,15 @@
 import React from 'react';
+import { WeeklyBody } from './WeeklyBody';
+import { WeeklyContainer } from './WeeklyContainer';
+import { WeeklyHead } from './WeeklyHead';
 
-interface Props {}
-
-const index = (props: Props) => {
-	return <div></div>;
+const index = () => {
+	return (
+		<WeeklyContainer>
+			<WeeklyHead />
+			<WeeklyBody />
+		</WeeklyContainer>
+	);
 };
 
 export default index;

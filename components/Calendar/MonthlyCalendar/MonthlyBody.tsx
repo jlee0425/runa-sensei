@@ -1,7 +1,7 @@
 import { addDays, startOfMonth, subDays } from 'date-fns';
 import React, { useContext } from 'react';
 import { CalendarContext } from '../../../lib/context';
-import { CalendarRow } from './CalendarRow';
+import { CalendarRow } from '../CalendarComponents/CalendarRow';
 
 const getFullMonth = (startDate: Date) => {
 	const [CAL_COLUMN, CAL_ROW] = [7, 5];

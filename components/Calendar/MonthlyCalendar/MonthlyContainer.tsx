@@ -11,7 +11,6 @@ export const MonthlyContainer = ({ children }) => {
 			minH='500px'
 			templateColumns={`repeat(${GRID_COLUMN}, 1fr)`}
 			templateRows={`repeat(${GRID_ROW}, 1fr)`}
-			templateAreas='days calendar'
 			bg='whitesmoke'
 			borderWidth='0.5px'
 			borderColor='lightblue'

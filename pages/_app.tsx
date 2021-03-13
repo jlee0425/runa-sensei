@@ -10,7 +10,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 	const user = useUserData();
 	return (
 		<Chakra cookies={pageProps.cookies}>
-			<Box maxW='3xl' m='auto'>
+			<Box maxW='5xl' m='auto'>
 				<UserContext.Provider value={user}>
 					<Navbar />
 					<Component {...pageProps} />

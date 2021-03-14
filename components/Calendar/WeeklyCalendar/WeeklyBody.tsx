@@ -23,5 +23,9 @@ export const WeeklyBody = () => {
 	const [startTime, endTime] = [7, 22];
 	const timeline = getTimeline(startTime, endTime);
 
-	return <>{/* <CalendarRow /> */}</>;
+	return (
+		<>
+			<WeeklyColumn colNum={1} />
+		</>
+	);
 };

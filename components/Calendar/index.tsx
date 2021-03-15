@@ -1,46 +1,62 @@
 import { Flex } from '@chakra-ui/react';
-import React, { useContext } from 'react';
-import { googleAuthProvider } from '../../lib/firebase';
+import React, { useEffect, useState } from 'react';
+import { CalendarContext } from '../../lib/context';
+import { CalendarContainer } from './CalendarComponents/CalendarContainer';
+import { CalendarHeader } from './CalendarComponents/Header';
+import { CalendarTitle } from './CalendarComponents/Title';
+import { ViewType } from './CalendarComponents/ViewType';
 
-const initClient = () => {
-	window.gapi.client.init({
-		apiKey: process.env.GC_API_KEY,
-		clientId: process.env.GC_CLIENT_ID,
-		discoveryDocs: [
-			'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
-		],
-		scope: 'https://www.googleapis.com/auth/calendar.readyonly',
-	});
-};
-const loadCalendar = async () => {
-	if (typeof window !== 'undefined') {
-		await gapi.load('client:auth2', initClient);
-		const res = await gapi.client.calendar.events.list({
-			calendarId: 'runaesensei@gmail.com',
-			showDeleted: false,
-			singleEvents: true,
-			maxResults: 10,
-			orderBy: 'startTime',
-		});
-		console.log(res.result.items);
-		console.log(res.result.timeZone);
-		console.log(res.result);
-	}
-};
+// export const getStaticProps: GetStaticProps = async () => {
+// 	const result = await loadEvents();
+// 	if (!result)
+// 		return {
+// 			notFound: true,
+// 		};
+// 	return {
+// 		props: {
+// 			title: result.summary,
+// 			timeZone: result.timeZone,
+// 			events: result.items,
+// 		},
+// 		revalidate: 1,
+// 	};
+// };
+
 const Calendar = (props) => {
-	loadCalendar();
+	const [result, setResult] = useState({});
+	const [timeZone, setTimeZone] = useState(
+		Intl.DateTimeFormat().resolvedOptions().timeZone,
+	);
+	const [currentTime, setCurrentTime] = useState(new Date());
+	const [viewType, setViewType] = useState('Weekly');
+
+	// const getCalendarInfo = async () => {
+	// 	setResult(events);
+	// };
+
+	console.log('result', result);
 	return (
-		<Flex justify='center'>
-			<iframe
-				src='https://calendar.google.com/calendar/embed?src=runaesensei%40gmail.com&ctz=Asia%2FSeoul'
-				style={{ border: 0 }}
-				width='800'
-				height='600'
-				frameBorder='0'
-				scrolling='no'
-			></iframe>
-		</Flex>
+		<CalendarContext.Provider
+			value={{
+				timeZone,
+				currentTime,
+				viewType,
+				setTimeZone,
+				setCurrentTime,
+				setViewType,
+			}}
+		>
+			<Flex justify='center' align='center' flexDirection='column'>
+				<CalendarTitle />
+				<CalendarHeader />
+				<ViewType />
+				<CalendarContainer />
+			</Flex>
+		</CalendarContext.Provider>
 	);
 };
 
 export default Calendar;
+function useCalendarEvents() {
+	throw new Error('Function not implemented.');
+}

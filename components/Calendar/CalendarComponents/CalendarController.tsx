@@ -7,7 +7,7 @@ import { CalendarContext } from '../../../lib/context';
 export const CalendarController = () => {
 	const { currentTime, setCurrentTime, viewType } = useContext(CalendarContext);
 	const monthFormat = 'MMMM yyyy';
-	const weekFormat = 'wo MMMM';
+	const weekFormat = 'wo';
 	console.log('viewType', viewType);
 
 	return viewType == 'Monthly' ? (
@@ -25,7 +25,10 @@ export const CalendarController = () => {
 			<ChevronLeftIcon
 				onClick={() => setCurrentTime(subWeeks(currentTime, 1))}
 			/>
-			<Text>{format(currentTime || Date.now(), weekFormat)}</Text>
+			<Text>
+				{format(currentTime || Date.now(), weekFormat)} Week{' '}
+				<strong>{currentTime.getMonth()}</strong>
+			</Text>
 			<ChevronRightIcon
 				onClick={() => setCurrentTime(addWeeks(currentTime, 1))}
 			/>

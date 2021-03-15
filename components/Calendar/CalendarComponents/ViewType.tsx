@@ -38,7 +38,7 @@ export const ViewType = () => {
 	const viewOptions = ['Weekly', 'Monthly'];
 	const { getRootProps, getRadioProps } = useRadioGroup({
 		name: 'viewType',
-		defaultValue: 'Monthly',
+		defaultValue: 'Weekly',
 		onChange: (val: string) => setViewType(val),
 	});
 

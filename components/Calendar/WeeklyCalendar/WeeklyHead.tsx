@@ -1,21 +1,17 @@
-import { Box, Center, GridItem, Text } from '@chakra-ui/react';
+import { Box, Center, Grid, GridItem, Text } from '@chakra-ui/react';
 import { startOfWeek, addDays, format } from 'date-fns';
 import React, { useContext } from 'react';
 import { CalendarContext } from '../../../lib/context';
+import { useDaysOfWeek } from '../../../lib/useDaysOfWeek';
 
 export const WeeklyHead = () => {
-	const dates: Date[] = [];
+	const days: Date[] = useDaysOfWeek();
 	const { currentTime } = useContext(CalendarContext);
-	const startDate = startOfWeek(currentTime);
-
-	for (let i = 0; i < 7; i++) {
-		dates.push(addDays(startDate, i));
-	}
 
 	return (
-		<>
-			{dates.map((date) => (
-				<GridItem bg='teal.100'>
+		<Grid templateColumns='repeat(7, 1fr)'>
+			{days.map((date) => (
+				<GridItem bg='teal.100' border='1px solid skyblue'>
 					<Center flexDirection='column'>
 						<Text fontSize='xl'>{format(date, 'EEE')}</Text>
 						<Text
@@ -28,6 +24,6 @@ export const WeeklyHead = () => {
 					</Center>
 				</GridItem>
 			))}
-		</>
+		</Grid>
 	);
 };
